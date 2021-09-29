@@ -2,6 +2,7 @@ import { Component, VERSION } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Character } from './dao/character';
 import { RicoService } from './services/ricoService';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'my-app',
@@ -11,7 +12,14 @@ import { RicoService } from './services/ricoService';
 export class AppComponent {
   res: Character[];
 
-  constructor(private http: RicoService) {}
+  constructor(
+    private http: RicoService,
+    private primengConfig: PrimeNGConfig
+  ) {}
+
+  ngOnInit() {
+    this.primengConfig.ripple = true;
+  }
 
   test() {
     this.http.get('https://rickandmortyapi.com/api/character/').subscribe(
@@ -23,11 +31,8 @@ export class AppComponent {
           this.res.push(p);
         }
         console.info('end');
-        //this.res = JSON.stringify(data.results);
       },
-      (error) => {
-        //this.res = JSON.stringify(error);
-      }
+      (error) => {}
     );
   }
 }

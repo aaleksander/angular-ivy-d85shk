@@ -1,11 +1,13 @@
-<p>Start editing to see some magic happen :)</p>
+<p>Список</p>
 
 <button (click)="test()">test</button>
-
+<br />
+<i class="pi pi-check"></i>
+персонажи<br />
 <ul>
   <li *ngFor="let item of res">
     {{ item.id }}
-    {{ item.name }}
+    <a href="/{{ item.id }}">{{ item.name }}</a>
     {{ item.status }}
   </li>
 </ul>
